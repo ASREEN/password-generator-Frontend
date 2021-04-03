@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import "./display.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 const Display = () => {
   const [data, setData] = useState([]);
+  const [invalid, setInvalid] = useState("");
   const [passwordConditions, setPasswordConditions] = useState({
     minlength: 0,
     nuOfSpecialChar: 0,
     nuOfnumbers: 0,
     nuOfpasswords: 0,
   });
-
+  useEffect(() => {
+    if (invalid) {
+      setTimeout(() => {
+        setInvalid("");
+      }, 5000);
+    }
+  }, [invalid]);
   const onSubmitForm = async (e) => {
     e.preventDefault();
     console.log({ passwordConditions });
@@ -30,7 +37,11 @@ const Display = () => {
         setData(result);
         console.log({ response, result });
       } else if (response.status === 401) {
+        setInvalid("You passed invalid entry");
         console.log(response, "401");
+      } else if (response.status === 402) {
+        setInvalid("Password Length must be 6-128 characters.");
+        console.log(response, "402");
       }
     } catch (error) {
       console.log({ error });
@@ -56,6 +67,7 @@ const Display = () => {
                       minlength: e.target.value,
                     });
                   }}
+                  required
                 ></Form.Control>
                 <label>Number of Numbers</label>
                 <Form.Control
@@ -71,6 +83,7 @@ const Display = () => {
                       nuOfnumbers: e.target.value,
                     });
                   }}
+                  required
                 ></Form.Control>
                 <label>Number of Symbols</label>
                 <Form.Control
@@ -86,6 +99,7 @@ const Display = () => {
                       nuOfSpecialChar: e.target.value,
                     });
                   }}
+                  required
                 ></Form.Control>
                 <label>Number of passwords</label>
                 <Form.Control
@@ -103,6 +117,7 @@ const Display = () => {
                       nuOfpasswords: e.target.value,
                     });
                   }}
+                  required
                 ></Form.Control>
                 <button type="submit" className="buttonSubmit">
                   Generate passwords
@@ -115,11 +130,12 @@ const Display = () => {
       </div>
       <br />
       <br />
+      {invalid && (
+        <div className="m-auto w-50 m-3 pass text-danger">{invalid}</div>
+      )}
       {data.length > 0 ? (
         <div className="password-description">
-          {data && (
-            <div className="length">These are {data.length} passwords</div>
-          )}
+          {data && <div className="length"> {data.length} passwords</div>}
           {data &&
             data.map((pass, index) => {
               return (
@@ -129,8 +145,9 @@ const Display = () => {
               );
             })}
         </div>
-      ) : " "
-    }
+      ) : (
+        " "
+      )}
       <br /> <br /> <br />
     </>
   );

@@ -10,98 +10,96 @@
 } */
 
 .password-display {
-    /* width: 60%; */
-    margin: 0 auto;
-    width: 50%;
-    margin: 0 auto;
-    border: 0;
-    color: white;
-    font-size: 1rem;
-    text-align: left;
-    padding-left: 5px;
-    height: 100%;
-    /* line-height: 150px; */
-    border: 2px inset rgb(173 216 230);
-    border-radius: 8%;
-    margin: 2rem;
-    padding: 3rem;
-    background: rgba(102, 97, 97, 0.5);
+  margin: 0 auto;
+  width: 50%;
+  margin: 0 auto;
+  border: 0;
+  color: white;
+  font-size: 1rem;
+  text-align: left;
+  padding-left: 5px;
+  height: 100%;
+  border: 2px inset rgb(173 216 230);
+  border-radius: 8%;
+  margin: 2rem;
+  padding: 3rem;
+  background: rgba(102, 97, 97, 0.5);
 }
-
+label {
+  font-size: 1.2rem;
+  color: rgb(12, 41, 4);
+}
 .password-display-input {
-    background-color: inherit;
-    color: white;
-    font-weight: bold;
-    margin: 2px 4px;
+  background-color: inherit;
+  color: white;
+  font-weight: bold;
+  margin: 2px 4px;
 }
-.invalid{
-    border:2px inset red;
+.invalid {
+  border: 2px inset red;
 }
-/* .buttonSubmit{
-    margin: 10px 30%;
-
-} */
 .buttonSubmit {
-    margin: 14px 19%;
-	box-shadow: 0px 10px 14px -7px #a1babe;
-	background:linear-gradient(to bottom, #5a7b86 5%, #a2c0c5 100%);
-	background-color:#599bb3;
-	border-radius:8px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:20px;
-	font-weight:bold;
-	padding:10px 32px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #3d768a;
+  margin: 14px 19%;
+  box-shadow: 0px 10px 14px -7px #a1babe;
+  background: linear-gradient(to bottom, #5a7b86 5%, #a2c0c5 100%);
+  background-color: #599bb3;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 32px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #3d768a;
 }
 .myButton:hover {
-	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-	background-color:#408c99;
+  background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+  background-color: #408c99;
 }
 .myButton:active {
-	position:relative;
-	top:1px;
+  position: relative;
+  top: 1px;
 }
 
-.length{
-    font-weight: 800;
-    font-size: 14pt;
-    color: rgb(12, 41, 4);
-    margin: 5px 10%;
-
+.length {
+  font-weight: 800;
+  font-size: 14pt;
+  color: rgb(6, 4, 41);
+  margin: 5px 10%;
 }
 .password-description {
-    width: 50%;
-    margin: 0 auto;
-    padding: 10px 10px;
-    font-size: 16px;
-    opacity: 0.7;
-    background-color: gray;
-    color: white;
-    border: 2px inset rgb(173 216 230);
-    border-radius: 8%;
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px 10px;
+  font-size: 16px;
+  opacity: 0.7;
+  background-color: gray;
+  color: white;
+  border: 2px inset rgb(173 216 230);
+  border-radius: 8%;
 }
 
 .fas {
-    color: white;
+  color: white;
 }
 .pass {
-    padding: 10px;
+  padding: 10px;
+  font-size: 14pt;
+  color: rgb(6, 4, 41);
+  margin: 5px 10%;
 }
 
 .password-type {
-    position: relative;
-    display: flex;
+  position: relative;
+  display: flex;
 }
 
-
 .generate-btn {
-    border: none;
-    background: none;
-    font-size: 25px;
-    color: white;
-    outline: none !important;
+  border: none;
+  background: none;
+  font-size: 25px;
+  color: white;
+  outline: none !important;
 }
