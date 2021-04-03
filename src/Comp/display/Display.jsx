@@ -20,7 +20,6 @@ const Display = () => {
   }, [invalid]);
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    console.log({ passwordConditions });
     try {
       const response = await fetch(
         "http://localhost:5500/api/generate/passwords/v1",
@@ -35,16 +34,14 @@ const Display = () => {
       const result = await response.json();
       if (response.ok) {
         setData(result);
-        console.log({ response, result });
       } else if (response.status === 401) {
         setInvalid("You passed invalid entry");
-        console.log(response, "401");
       } else if (response.status === 402) {
         setInvalid("Password Length must be 6-128 characters.");
-        console.log(response, "402");
       }
     } catch (error) {
       console.log({ error });
+      setInvalid(error);
     }
   };
   return (
@@ -139,8 +136,8 @@ const Display = () => {
           {data &&
             data.map((pass, index) => {
               return (
-                <div className="m-auto w-50 m-3 pass" key={index}>
-                  {pass}
+                <div className="m-auto  m-3 pass" key={index}>
+                  <b className="index">{index + 1})</b>{pass}
                 </div>
               );
             })}
