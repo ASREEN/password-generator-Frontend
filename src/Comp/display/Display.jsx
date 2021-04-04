@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import Buttun from "../container/Button";
 import "./display.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 const Display = () => {
@@ -36,11 +37,10 @@ const Display = () => {
         setData(result);
       } else if (response.status === 401) {
         setInvalid("You passed invalid entry");
-      } else if (response.status === 402) {
+      } else if (response.status === 403) {
         setInvalid("Password Length must be 6-128 characters.");
       }
     } catch (error) {
-      console.log({ error });
       setInvalid(error);
     }
   };
@@ -50,7 +50,7 @@ const Display = () => {
         <div className="col-12 password-display-container">
           <div>
             <div className="password-display m-auto">
-              <form onSubmit={onSubmitForm}>
+              <Form>
                 <label>Minimum Length</label>
                 <Form.Control
                   name="minlength"
@@ -116,10 +116,12 @@ const Display = () => {
                   }}
                   required
                 ></Form.Control>
-                <button type="submit" className="buttonSubmit">
-                  Generate passwords
-                </button>
-              </form>
+                <Buttun
+                  label="Generate passwords"
+                  className="buttonSubmit"
+                  handleClick={onSubmitForm}
+                />
+              </Form>
             </div>
           </div>
           <div className="password-display-icons"></div>
@@ -130,14 +132,15 @@ const Display = () => {
       {invalid && (
         <div className="m-auto w-50 m-3 pass text-danger">{invalid}</div>
       )}
-      {data.length > 0 ? (
+      {data.length > 0 && !invalid ? (
         <div className="password-description">
           {data && <div className="length"> {data.length} passwords</div>}
           {data &&
             data.map((pass, index) => {
               return (
                 <div className="m-auto  m-3 pass" key={index}>
-                  <b className="index">{index + 1})</b>{pass}
+                  <b className="index">{index + 1})</b>
+                  {pass}
                 </div>
               );
             })}

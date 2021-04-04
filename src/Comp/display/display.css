@@ -80,6 +80,7 @@ label {
   color: white;
 }
 .pass {
+  overflow-x:hidden;
   padding: 10px;
   font-size: 14pt;
   color: rgb(6, 4, 41);
