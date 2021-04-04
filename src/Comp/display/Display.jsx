@@ -23,7 +23,7 @@ const Display = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5500/api/generate/passwords/v1",
+        "https://password-generator2021.herokuapp.com/api/generate/passwords/v1",
         {
           method: "POST",
           headers: {
