@@ -19,8 +19,6 @@ label {
   color: rgb(12, 41, 4);
 }
 .password-display-input {
-  /* background-color: inherit; */
-  color: white;
   font-weight: bold;
   margin: 2px 4px;
 }
