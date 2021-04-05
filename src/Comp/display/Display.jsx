@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, ListGroup, Alert } from "react-bootstrap";
 import Buttun from "../container/Button";
 import "./display.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,29 +16,31 @@ const Display = () => {
     if (invalid) {
       setTimeout(() => {
         setInvalid("");
-      }, 5000);
+      }, 10000);
     }
   }, [invalid]);
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        "https://password-generator2021.herokuapp.com/api/generate/passwords/v1",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(passwordConditions),
+      if (invalid === "") {
+        const response = await fetch(
+          "https://password-generator2021.herokuapp.com/api/generate/passwords/v1",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(passwordConditions),
+          }
+        );
+        const result = await response.json();
+        if (response.ok) {
+          setData(result);
+        } else if (response.status === 401) {
+          setInvalid("You passed invalid entry");
+        } else if (response.status === 403) {
+          setInvalid("Password Length must be 6-128 characters.");
         }
-      );
-      const result = await response.json();
-      if (response.ok) {
-        setData(result);
-      } else if (response.status === 401) {
-        setInvalid("You passed invalid entry");
-      } else if (response.status === 403) {
-        setInvalid("Password Length must be 6-128 characters.");
       }
     } catch (error) {
       setInvalid(error);
@@ -124,13 +126,15 @@ const Display = () => {
               </Form>
             </div>
           </div>
-          <div className="password-display-icons"></div>
         </div>
       </div>
       <br />
       <br />
       {invalid && (
-        <div className="m-auto w-50 m-3 pass text-danger">{invalid}</div>
+        <Alert variant="danger" dismissible className="m-auto w-50 m-3">
+          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+          <p>{invalid} Change you enteries and try again.</p>
+        </Alert>
       )}
       {data.length > 0 && !invalid ? (
         <div className="password-description">
@@ -138,10 +142,13 @@ const Display = () => {
           {data &&
             data.map((pass, index) => {
               return (
-                <div className="m-auto  m-3 pass" key={index}>
-                  <b className="index">{index + 1})</b>
-                  {pass}
-                </div>
+                <ListGroup
+                  className="m-auto  m-3 pass"
+                  key={index}
+                  variant="flush"
+                >
+                  <ListGroup.Item>{pass}</ListGroup.Item>
+                </ListGroup>
               );
             })}
         </div>
