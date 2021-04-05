@@ -131,7 +131,7 @@ const Display = () => {
       <br />
       <br />
       {invalid && (
-        <Alert variant="danger" dismissible className="m-auto w-50 m-3">
+        <Alert variant="danger"  className="m-auto w-50">
           <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
           <p>{invalid} Change you enteries and try again.</p>
         </Alert>
