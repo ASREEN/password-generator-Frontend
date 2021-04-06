@@ -40,7 +40,7 @@ const Display = () => {
           passwordConditions.nuOfnumbers === 0 ||
           passwordConditions.nuOfnumbers === 0
         ) {
-          setRequireInput("Please fill in all inputs !");
+          setRequireInput("Please fill all inputs !");
         }
         const response = await fetch(
           "https://password-generator2021.herokuapp.com/api/generate/passwords/v1",
