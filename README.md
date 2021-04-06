@@ -17,6 +17,6 @@ Backend: Heroku for Back end.
 clone the frontend folder write in the teminal npm install than npm start
 
 ### Links
-[Backend repository](https://github.com/ASREEN/password-generator-Backend)
+ - [Backend repository](https://github.com/ASREEN/password-generator-Backend)
 
-[Live App](https://password-generator-2921.netlify.app/)
+ - [Live App](https://password-generator-2921.netlify.app/)
