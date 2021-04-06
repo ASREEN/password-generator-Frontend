@@ -14,7 +14,7 @@ Backend: Heroku for Back end.
 
 ### How to run the project? :
 
-clone the frontend folder write in the teminal npm install than npm start
+clone the frontend folder write in the teminal npm install then npm start
 
 ### Links
  - [Backend repository](https://github.com/ASREEN/password-generator-Backend)
