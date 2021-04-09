@@ -1,12 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Form, Alert, InputGroup, FormControl } from "react-bootstrap";
+import React, { useState, useRef } from "react";
+import { Form, InputGroup, FormControl } from "react-bootstrap";
 import Buttun from "../container/Button";
 import "./display.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import ToastMessage from "../container/ToastMessage";
+import { Toast } from "react-bootstrap";
 const Display = () => {
   const [data, setData] = useState([]);
   const [invalid, setInvalid] = useState("");
+  // const [show, setShow] = useState(invalid ? true : false);
   const [requireInput, setRequireInput] = useState("");
+  const [show, setShow] = useState(true);
   const [passwordConditions, setPasswordConditions] = useState({
     minlength: 0,
     nuOfSpecialChar: 0,
@@ -14,13 +18,6 @@ const Display = () => {
     nuOfpasswords: 0,
   });
   const thisRef = useRef();
-  useEffect(() => {
-    if (invalid) {
-      setTimeout(() => {
-        setInvalid("");
-      }, 8000);
-    }
-  }, [invalid]);
   const clipboardCopy = (text = "") => {
     const input = document.createElement("input");
     input.value = text;
@@ -39,10 +36,8 @@ const Display = () => {
           passwordConditions.nuOfnumbers === 0 ||
           passwordConditions.nuOfpasswords === 0
         ) {
-          setRequireInput(
-            "Please fill all inputs, please check all entries !!!"
-          );
-          setInvalid("Please fill all inputs !");
+          setRequireInput("Please fill all inputs !!!");
+          setInvalid("Please fill all inputs, please check all entries !!!");
         } else {
           // 'http://localhost:5500/api/generate/passwords/v1',
           const response = await fetch(
@@ -81,14 +76,26 @@ const Display = () => {
         <div className="col-12 password-display-container">
           <div>
             {invalid !== "" && (
-              <>
-                <Alert variant="danger" className="m-auto w-50">
-                  <Alert.Heading>Oh, snap! You got an error!</Alert.Heading>
-                  <p>{invalid}. Change your enteries and try again.</p>
-                </Alert>
-                <br />
-                <br />
-              </>
+              <div className="mb-4">
+                <Toast
+                  className="m-auto w-50"
+                  onClose={() => {
+                    setShow(false);
+                  }}
+                  show={show}
+                  delay={3000}
+                >
+                  <Toast.Header style={{ background: "#E86668" }}>
+                    <img
+                      src="holder.js/20x20?text=%20"
+                      className="rounded mr-2"
+                      alt=""
+                    />
+                    <strong className="mr-auto text-dander">Warning !! </strong>
+                  </Toast.Header>
+                  <Toast.Body>{invalid}</Toast.Body>
+                </Toast>
+              </div>
             )}
             <div className="password-display m-auto" ref={thisRef}>
               <Form>
@@ -99,6 +106,7 @@ const Display = () => {
                   placeholder={!requireInput ? " " : requireInput}
                   className={invalid !== "" ? "border-danger" : " "}
                   onChange={(e) => {
+                    setInvalid("");
                     setPasswordConditions({
                       ...passwordConditions,
                       minlength: e.target.value,
@@ -117,6 +125,7 @@ const Display = () => {
                       : " "
                   }
                   onChange={(e) => {
+                    setInvalid("");
                     setPasswordConditions({
                       ...passwordConditions,
                       nuOfnumbers: e.target.value,
@@ -132,6 +141,7 @@ const Display = () => {
                     isNaN(passwordConditions?.nuOfSpecialChar) ? "invalid" : " "
                   }
                   onChange={(e) => {
+                    setInvalid("");
                     setPasswordConditions({
                       ...passwordConditions,
                       nuOfSpecialChar: e.target.value,
@@ -149,6 +159,7 @@ const Display = () => {
                       : "password-display-input "
                   }
                   onChange={(e) => {
+                    setInvalid("");
                     setPasswordConditions({
                       ...passwordConditions,
                       nuOfpasswords: e.target.value,
