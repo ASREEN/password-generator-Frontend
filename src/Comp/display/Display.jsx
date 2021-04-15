@@ -3,12 +3,10 @@ import { Form, InputGroup, FormControl } from "react-bootstrap";
 import Buttun from "../container/Button";
 import "./display.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import ToastMessage from "../container/ToastMessage";
 import { Toast } from "react-bootstrap";
 const Display = () => {
   const [data, setData] = useState([]);
   const [invalid, setInvalid] = useState("");
-  // const [show, setShow] = useState(invalid ? true : false);
   const [requireInput, setRequireInput] = useState("");
   const [show, setShow] = useState(true);
   const [passwordConditions, setPasswordConditions] = useState({
@@ -66,7 +64,6 @@ const Display = () => {
         }
       }
     } catch (error) {
-      // console.log({error})
       setInvalid(error);
     }
   };
