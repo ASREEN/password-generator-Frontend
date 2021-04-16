@@ -39,8 +39,7 @@ const Display = () => {
         } else {
           // 'http://localhost:5500/api/generate/passwords/v1',
           const response = await fetch(
-            // "https://password-generator2.herokuapp.com/api/generate/passwords/v1",
-            "http://localhost:5500/api/generate/passwords/v1",
+            "https://password-generator2.herokuapp.com/api/generate/passwords/v1",
             {
               method: "POST",
               headers: {
