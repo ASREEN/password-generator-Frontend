@@ -39,7 +39,8 @@ const Display = () => {
         } else {
           // 'http://localhost:5500/api/generate/passwords/v1',
           const response = await fetch(
-            "https://password-generator2.herokuapp.com/api/generate/passwords/v1",
+            // "https://password-generator2.herokuapp.com/api/generate/passwords/v1",
+            "http://localhost:5500/api/generate/passwords/v1",
             {
               method: "POST",
               headers: {
@@ -60,6 +61,8 @@ const Display = () => {
             setInvalid("You passed invalid entry");
           } else if (response.status === 403) {
             setInvalid("Password Length must be 6-128 characters.");
+          } else if (response.status === 400) {
+            setInvalid("Number of passwords is maximal 100.");
           }
         }
       }
