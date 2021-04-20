@@ -82,7 +82,7 @@ const Display = () => {
                     setShow(false);
                   }}
                   show={show}
-                  delay={3000}
+                  delay={500}
                 >
                   <Toast.Header style={{ background: "#E86668" }}>
                     <img
